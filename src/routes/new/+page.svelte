@@ -4,16 +4,53 @@
 	import CarbonSelect from '$lib/components/CarbonSelect.svelte';
 	import CarbonTextarea from '$lib/components/CarbonTextarea.svelte';
 	import CarbonToggle from '$lib/components/CarbonToggle.svelte';
+	import { uint8ArrayToB64String } from '$lib/utils/encoding';
+
+	import _sodium from 'libsodium-wrappers-sumo';
 
 	let plainText = '';
 	let senderName = '';
 	let password = '';
 	let oneView = false;
 	let lifespan = '604800';
+
+	const generatePasteKey = () => {
+		const key = _sodium.randombytes_buf(_sodium.crypto_aead_chacha20poly1305_KEYBYTES);
+		return key;
+	};
+
+	const encryptPayload = (key: Uint8Array, data: ArrayBuffer) => {
+		const state = _sodium.crypto_secretstream_xchacha20poly1305_init_push(key);
+
+		const ciphertext = _sodium.crypto_secretstream_xchacha20poly1305_push(
+			state.state,
+			new Uint8Array(data),
+			null,
+			_sodium.crypto_secretstream_xchacha20poly1305_TAG_FINAL
+		);
+
+		return {
+			header: state.header,
+			ciphertext
+		};
+	};
+
+	const te = new TextEncoder();
+
+	const onShareHandler = () => {
+		const key = generatePasteKey();
+
+		const plainTextArray = te.encode(plainText);
+
+		const payload = encryptPayload(key, plainTextArray);
+
+		console.log(uint8ArrayToB64String(payload.header));
+		console.log(uint8ArrayToB64String(payload.ciphertext));
+	};
 </script>
 
 <div class="wrapper">
-	<form style="display: contents">
+	<form style="display: contents" on:submit|preventDefault={onShareHandler}>
 		<div class="container">
 			<div class="textarea">
 				<CarbonTextarea
