@@ -8,7 +8,7 @@
 	export let pasteId: string;
 	export let pasteFragment: string;
 
-	const url = `${window.location.protocol}://${window.location.host}/v/${pasteId}#${pasteFragment}`;
+	const url = `${window.location.protocol}//${window.location.host}/v/${pasteId}#${pasteFragment}`;
 
 	let qrDataURL = '';
 
