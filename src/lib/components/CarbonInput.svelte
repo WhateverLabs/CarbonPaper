@@ -28,7 +28,7 @@
 			<input class="input" bind:value {placeholder} {style} {id} type="password" />
 		{/if}
 		{#if secureText}
-			<button class="eye" on:click={() => (showSecureText = !showSecureText)}>
+			<button class="eye" type="button" on:click={() => (showSecureText = !showSecureText)}>
 				{#if !showSecureText}
 					<EyeIcon />
 				{:else}
