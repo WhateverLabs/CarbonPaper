@@ -6,7 +6,7 @@
 	import CarbonTextarea from '$lib/components/CarbonTextarea.svelte';
 	import CarbonToggle from '$lib/components/CarbonToggle.svelte';
 	import type { PasteRequestBody } from '$lib/types/pasteCreation';
-	import { uint8ArrayToB64String } from '$lib/utils/encoding';
+	import { preparePassword } from '$lib/utils/pw';
 
 	import _sodium from 'libsodium-wrappers-sumo';
 
@@ -42,29 +42,11 @@
 		};
 	};
 
-	const preparePassword = () => {
-		// create a salt
-		const salt = _sodium.randombytes_buf(_sodium.crypto_pwhash_SALTBYTES);
-
-		// derive a key from the password
-		const key = _sodium.crypto_pwhash(
-			_sodium.crypto_pwhash_SALTBYTES,
-			password,
-			salt,
-			_sodium.crypto_pwhash_OPSLIMIT_INTERACTIVE,
-			_sodium.crypto_pwhash_MEMLIMIT_INTERACTIVE,
-			_sodium.crypto_pwhash_ALG_ARGON2ID13
-		);
-
-		return {
-			salt,
-			key
-		};
-	};
-
 	const te = new TextEncoder();
 
 	const onShareHandler = async () => {
+		await _sodium.ready;
+
 		shareLoading = true;
 
 		const key = generatePasteKey();
@@ -78,33 +60,33 @@
 		const bodyEncrypted = encryptPayload(key, plainTextArray);
 
 		const requestBody = {
-			senderNameHeader: uint8ArrayToB64String(senderNameEncrypted.header),
-			senderNameCiphertext: uint8ArrayToB64String(senderNameEncrypted.ciphertext),
+			senderNameHeader: _sodium.to_base64(senderNameEncrypted.header),
+			senderNameCiphertext: _sodium.to_base64(senderNameEncrypted.ciphertext),
 
-			bodyHeader: uint8ArrayToB64String(bodyEncrypted.header),
-			bodyCiphertext: uint8ArrayToB64String(bodyEncrypted.ciphertext),
+			bodyHeader: _sodium.to_base64(bodyEncrypted.header),
+			bodyCiphertext: _sodium.to_base64(bodyEncrypted.ciphertext),
 
 			expiresInSeconds: Number(lifespan)
 		} as PasteRequestBody;
 
 		if (password.length > 0) {
-			const pwHash = preparePassword();
+			const pwHash = preparePassword(password);
 			const salt = pwHash.salt;
 			const keyEncryptionKey = pwHash.key;
 
-			requestBody.passwordHashSalt = uint8ArrayToB64String(salt);
+			requestBody.passwordHashSalt = _sodium.to_base64(salt);
 			const kekHash = _sodium.crypto_generichash(
 				_sodium.crypto_generichash_KEYBYTES,
 				keyEncryptionKey
 			);
-			requestBody.passwordHash = uint8ArrayToB64String(kekHash);
+			requestBody.kekHash = _sodium.to_base64(kekHash);
 			// encrypt the key
 			const keyEncrypted = encryptPayload(keyEncryptionKey, key);
 
-			requestBody.encryptedKeyHeader = uint8ArrayToB64String(keyEncrypted.header);
-			pasteFragment = `pw--${uint8ArrayToB64String(keyEncrypted.ciphertext)}`;
+			requestBody.encryptedKeyHeader = _sodium.to_base64(keyEncrypted.header);
+			pasteFragment = `pw--${_sodium.to_base64(keyEncrypted.ciphertext)}`;
 		} else {
-			pasteFragment = uint8ArrayToB64String(key);
+			pasteFragment = _sodium.to_base64(key);
 		}
 
 		let res: Response;
@@ -136,6 +118,9 @@
 		}
 
 		pasteId = data.data;
+
+		console.log(pasteId);
+		console.log(pasteFragment);
 	};
 </script>
 

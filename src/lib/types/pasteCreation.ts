@@ -5,7 +5,7 @@ export interface PasteRequestBody {
 	bodyHeader: string;
 	bodyCiphertext: string;
 
-	passwordHash?: string;
+	kekHash?: string;
 	passwordHashSalt?: string;
 	encryptedKeyHeader?: string;
 

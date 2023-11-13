@@ -3,9 +3,10 @@
 	export let placeholder: string;
 	export let style: string = '';
 	export let required = false;
+	export let disabled = false;
 </script>
 
-<textarea class="textarea" bind:value {placeholder} {style} {required} />
+<textarea class="textarea" bind:value {placeholder} {style} {required} {disabled} />
 
 <style lang="scss">
 	.textarea {
@@ -19,7 +20,7 @@
 
 		&:hover {
 			// only show if not focused
-			&:not(:focus) {
+			&:not(:focus, :disabled) {
 				background-color: #4a4a53;
 				cursor: pointer;
 			}
