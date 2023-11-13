@@ -66,6 +66,8 @@
 			bodyHeader: _sodium.to_base64(bodyEncrypted.header),
 			bodyCiphertext: _sodium.to_base64(bodyEncrypted.ciphertext),
 
+			oneView,
+
 			expiresInSeconds: Number(lifespan)
 		} as PasteRequestBody;
 

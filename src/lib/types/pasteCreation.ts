@@ -9,5 +9,7 @@ export interface PasteRequestBody {
 	passwordHashSalt?: string;
 	encryptedKeyHeader?: string;
 
+	oneView: boolean;
+
 	expiresInSeconds: number;
 }
