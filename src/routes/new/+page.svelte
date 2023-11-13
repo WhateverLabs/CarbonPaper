@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PasteCreator from '$lib/pages/PasteCreator.svelte';
+	import PasteCreator from './PasteCreator.svelte';
 
 	let pasteId = '';
 	let pasteFragment = '';
