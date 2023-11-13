@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
-	import CarbonTextarea from '$lib/components/CarbonTextarea.svelte';
+	import PasteViewer from './PasteViewer.svelte';
 	import type { PasteRequestBody } from '$lib/types/pasteCreation';
 	import { preparePassword } from '$lib/utils/pw';
 	import _sodium from 'libsodium-wrappers-sumo';
 	import { onMount } from 'svelte';
+	import PasswordRequestView from './PasswordRequestView.svelte';
 
 	const pasteId = $page.params.id;
 
@@ -160,8 +161,11 @@
 
 <div class="wrapper">
 	<div class="container">
-		<h1>{senderName} shared a paste with you</h1>
-		<CarbonTextarea placeholder="" disabled value={body} style="width: 100%; max-height: 25rem;" />
+		{#if requestPassword}
+			<PasswordRequestView bind:password onSubmit={loadPaste} />
+		{:else}
+			<PasteViewer {senderName} {body} />
+		{/if}
 	</div>
 </div>
 
