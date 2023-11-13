@@ -160,7 +160,8 @@
 
 <div class="wrapper">
 	<div class="container">
-		<CarbonTextarea placeholder="" disabled value={body} style="width: 100%; height: 25rem;" />
+		<h1>{senderName} shared a paste with you</h1>
+		<CarbonTextarea placeholder="" disabled value={body} style="width: 100%; max-height: 25rem;" />
 	</div>
 </div>
 
