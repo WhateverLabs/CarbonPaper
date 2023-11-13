@@ -3,10 +3,14 @@
 
 	let pasteId = '';
 	let pasteFragment = '';
+
+	let page: 'creator' | 'share' = 'creator';
 </script>
 
 <div class="wrapper">
-	<PasteCreator />
+	{#if page === 'creator'}
+		<PasteCreator />
+	{:else}{/if}
 </div>
 
 <style lang="scss">
@@ -17,5 +21,7 @@
 		height: 100%;
 		padding: 1rem;
 		box-sizing: border-box;
+
+		background: linear-gradient(180deg, black, #310a52);
 	}
 </style>

@@ -33,6 +33,7 @@
 		height: 100%;
 		padding: 1rem;
 		box-sizing: border-box;
+		background: linear-gradient(0deg, black, #310a52);
 
 		.container {
 			max-width: 600px;
