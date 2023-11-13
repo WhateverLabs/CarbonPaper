@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CarbonButton from '$lib/components/CarbonButton.svelte';
+	import CarbonCopyButton from '$lib/components/CarbonCopyButton.svelte';
 	import CarbonInput from '$lib/components/CarbonInput.svelte';
 	import QRCode from 'qrcode';
 	import { onMount } from 'svelte';
@@ -30,6 +31,19 @@
 	disabled
 />
 
+<div class="center" style="margin-top: 2rem">
+	<CarbonCopyButton text={url} />
+	{#if navigator.canShare && navigator.canShare()}
+		<CarbonButton
+			on:click={() => {
+				navigator.share({
+					url
+				});
+			}}>Share</CarbonButton
+		>
+	{/if}
+</div>
+
 <div class="qrcode">
 	<img src={qrDataURL} alt="qrcode" />
 </div>
@@ -51,5 +65,6 @@
 	.center {
 		display: flex;
 		justify-content: center;
+		gap: 1rem;
 	}
 </style>
