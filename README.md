@@ -8,7 +8,7 @@ Carbon Paper is a pastebin app that lets you share long pieces of text in confid
 
 ## Encryption
 
-Carbon Paper encrypts sender names and paste content with AEAD XChaCha20-Poly1305. If a password is supplied, the paste's key is encrypted by a key derived from the password using Argon2id13. To reduce computational waste, the key encryption key is hashed with Blake3 and sent to the server. On decryption, the server will request the derived key encryption key before sending back ciphertext data. The password is not sent anywhere, hashed or otherwise, to prevent bruteforce attacks.
+Carbon Paper encrypts sender names and paste content with AEAD XChaCha20-Poly1305. If a password is supplied, the paste's key is encrypted by a key derived from the password using Argon2id13. To reduce computational waste, the key encryption key is hashed with Blake3 and sent to the server. On decryption, the server will request the derived key encryption key hash before sending back ciphertext data. The password is not sent anywhere, hashed or otherwise, to prevent bruteforce attacks.
 
 ## Developing
 
