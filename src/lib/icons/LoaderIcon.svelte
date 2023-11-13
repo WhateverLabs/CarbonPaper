@@ -1,4 +1,9 @@
-<svg width="15" height="15" fill="#fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+<script lang="ts">
+	export let width = 15;
+	export let height = 15;
+</script>
+
+<svg {width} {height} fill="#fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 	><style>
 		.spinner_ajPY {
 			transform-origin: center;

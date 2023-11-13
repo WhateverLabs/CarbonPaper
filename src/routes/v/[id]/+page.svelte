@@ -7,6 +7,7 @@
 	import _sodium from 'libsodium-wrappers-sumo';
 	import { onMount } from 'svelte';
 	import PasswordRequestView from './PasswordRequestView.svelte';
+	import LoaderIcon from '$lib/icons/LoaderIcon.svelte';
 
 	const pasteId = $page.params.id;
 
@@ -19,6 +20,8 @@
 
 	let senderName = '';
 	let body = '';
+
+	let loading = true;
 
 	const getPasteMetadata = async () => {
 		let res: Response;
@@ -77,16 +80,20 @@
 	const loadPaste = async () => {
 		await _sodium.ready;
 
+		loading = true;
+
 		try {
 			metadata = await getPasteMetadata();
 		} catch (err) {
 			console.error(err);
 			alert('Failed to load paste metadata');
+			loading = false;
 			return;
 		}
 
 		if (!requestPassword && metadata.passwordHashSalt.length > 0) {
 			requestPassword = true;
+			loading = false;
 			return;
 		}
 
@@ -109,6 +116,7 @@
 		} catch (err) {
 			console.error(err);
 			alert('Failed to load paste data');
+			loading = false;
 			return;
 		}
 
@@ -139,6 +147,8 @@
 		senderName = td.decode(decryptedSenderName);
 		body = td.decode(decryptedBody);
 
+		loading = false;
+
 		requestPassword = false;
 	};
 
@@ -163,10 +173,15 @@
 
 <div class="wrapper">
 	<div class="container">
-		{#if requestPassword}
-			<PasswordRequestView bind:password onSubmit={loadPaste} />
+		{#if loading}
+			<LoaderIcon width={30} height={30} />
 		{:else}
-			<PasteViewer {senderName} {body} />
+			<!-- svelte-ignore -->
+			{#if requestPassword}
+				<PasswordRequestView bind:password onSubmit={loadPaste} />
+			{:else}
+				<PasteViewer {senderName} {body} />
+			{/if}
 		{/if}
 	</div>
 </div>
