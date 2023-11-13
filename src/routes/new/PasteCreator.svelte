@@ -183,6 +183,9 @@
 			]}
 		/>
 	</div>
+	<p style="font-size: 0.8rem;">
+		Your sender name and content will be end-to-end encrypted during upload.
+	</p>
 	<div class="call-to-action">
 		<CarbonButton style="margin-top: 3rem;" loading={shareLoading}>Share</CarbonButton>
 	</div>
