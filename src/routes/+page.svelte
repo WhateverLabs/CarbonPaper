@@ -22,7 +22,9 @@
 		<div class="simplicity">
 			<h1>Simplicity is Key</h1>
 			<p>Just paste, copy the link, and share it with whoever.</p>
-			<CarbonButton>Start</CarbonButton>
+			<a href="/new" style="display: contents">
+				<CarbonButton>Start</CarbonButton>
+			</a>
 		</div>
 	</div>
 </div>
