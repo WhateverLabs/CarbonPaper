@@ -93,7 +93,11 @@
 			const keyEncryptionKey = pwHash.key;
 
 			requestBody.passwordHashSalt = uint8ArrayToB64String(salt);
-			requestBody.passwordHash = uint8ArrayToB64String(key);
+			const kekHash = _sodium.crypto_generichash(
+				_sodium.crypto_generichash_KEYBYTES,
+				keyEncryptionKey
+			);
+			requestBody.passwordHash = uint8ArrayToB64String(kekHash);
 			// encrypt the key
 			const keyEncrypted = encryptPayload(keyEncryptionKey, key);
 
