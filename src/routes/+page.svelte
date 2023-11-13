@@ -1,11 +1,13 @@
 <script>
 	import CarbonButton from '$lib/components/CarbonButton.svelte';
 	import ColourfulCarbonContainer from '$lib/components/ColourfulCarbonContainer.svelte';
+	import Logo from '$lib/components/Logo.svelte';
 </script>
 
 <div class="wrapper">
 	<div class="container">
 		<div class="hero">
+			<Logo />
 			<h1>Invisible Ink for the Digital Age</h1>
 			<ColourfulCarbonContainer>
 				<p style="margin: 0; text-align: left; font-size: 1.2rem">
@@ -44,6 +46,12 @@
 			text-align: center;
 			color: white;
 			width: 100%;
+
+			.hero {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
 
 			.simplicity {
 				margin-top: 5rem;
