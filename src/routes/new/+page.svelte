@@ -39,6 +39,26 @@
 		};
 	};
 
+	const preparePassword = () => {
+		// create a salt
+		const salt = _sodium.randombytes_buf(_sodium.crypto_pwhash_SALTBYTES);
+
+		// derive a key from the password
+		const key = _sodium.crypto_pwhash(
+			_sodium.crypto_pwhash_SALTBYTES,
+			password,
+			salt,
+			_sodium.crypto_pwhash_OPSLIMIT_INTERACTIVE,
+			_sodium.crypto_pwhash_MEMLIMIT_INTERACTIVE,
+			_sodium.crypto_pwhash_ALG_ARGON2ID13
+		);
+
+		return {
+			salt,
+			key
+		};
+	};
+
 	const te = new TextEncoder();
 
 	const onShareHandler = async () => {
@@ -54,6 +74,23 @@
 
 		const bodyEncrypted = encryptPayload(key, plainTextArray);
 
+		const requestBody = {
+			senderNameHeader: uint8ArrayToB64String(senderNameEncrypted.header),
+			senderNameCiphertext: uint8ArrayToB64String(senderNameEncrypted.ciphertext),
+
+			bodyHeader: uint8ArrayToB64String(bodyEncrypted.header),
+			bodyCiphertext: uint8ArrayToB64String(bodyEncrypted.ciphertext),
+
+			expiresInSeconds: Number(lifespan)
+		} as PasteRequestBody;
+
+		if (password.length > 0) {
+			const { salt, key } = preparePassword();
+
+			requestBody.passwordHashSalt = uint8ArrayToB64String(salt);
+			requestBody.passwordHash = uint8ArrayToB64String(key);
+		}
+
 		let res: Response;
 
 		try {
@@ -62,15 +99,7 @@
 				headers: {
 					'content-type': 'application/json'
 				},
-				body: JSON.stringify({
-					senderNameHeader: uint8ArrayToB64String(senderNameEncrypted.header),
-					senderNameCiphertext: uint8ArrayToB64String(senderNameEncrypted.ciphertext),
-
-					bodyHeader: uint8ArrayToB64String(bodyEncrypted.header),
-					bodyCiphertext: uint8ArrayToB64String(bodyEncrypted.ciphertext),
-
-					expiresInSeconds: Number(lifespan)
-				} as PasteRequestBody)
+				body: JSON.stringify(requestBody)
 			});
 		} catch (e) {
 			console.error(e);
