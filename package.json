@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
 		"@types/libsodium-wrappers-sumo": "^0.7.8",
+		"@types/qrcode": "^1.5.5",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"eslint": "^8.28.0",
@@ -31,6 +32,7 @@
 	"type": "module",
 	"dependencies": {
 		"libsodium-wrappers-sumo": "^0.7.13",
+		"qrcode": "^1.5.3",
 		"sass": "^1.69.5"
 	}
 }

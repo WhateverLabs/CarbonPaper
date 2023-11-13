@@ -8,6 +8,7 @@
 	export let id: string = '';
 	export let label: string;
 	export let secureText = false;
+	export let disabled = false;
 
 	let showSecureText = false;
 </script>
@@ -23,12 +24,18 @@
 				{id}
 				type="text"
 				class:clear={!secureText}
+				{disabled}
 			/>
 		{:else}
-			<input class="input" bind:value {placeholder} {style} {id} type="password" />
+			<input class="input" bind:value {placeholder} {style} {id} type="password" {disabled} />
 		{/if}
 		{#if secureText}
-			<button class="eye" type="button" on:click={() => (showSecureText = !showSecureText)}>
+			<button
+				class="eye"
+				type="button"
+				on:click={() => (showSecureText = !showSecureText)}
+				{disabled}
+			>
 				{#if !showSecureText}
 					<EyeIcon />
 				{:else}
@@ -103,7 +110,7 @@
 
 				&:hover {
 					// only show if not focused
-					&:not(:focus) {
+					&:not(:focus, :disabled) {
 						background-color: #4a4a53;
 						cursor: pointer;
 					}

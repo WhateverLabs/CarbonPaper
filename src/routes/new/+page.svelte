@@ -1,16 +1,27 @@
 <script lang="ts">
 	import PasteCreator from './PasteCreator.svelte';
+	import ShareView from './ShareView.svelte';
 
 	let pasteId = '';
 	let pasteFragment = '';
 
 	let page: 'creator' | 'share' = 'creator';
+
+	$: {
+		if (pasteId && pasteFragment) {
+			page = 'share';
+		}
+	}
 </script>
 
 <div class="wrapper">
-	{#if page === 'creator'}
-		<PasteCreator />
-	{:else}{/if}
+	<div class="container">
+		{#if page === 'creator'}
+			<PasteCreator bind:pasteId bind:pasteFragment />
+		{:else}
+			<ShareView {pasteId} {pasteFragment} />
+		{/if}
+	</div>
 </div>
 
 <style lang="scss">
@@ -23,5 +34,12 @@
 		box-sizing: border-box;
 
 		background: linear-gradient(180deg, black, #310a52);
+
+		.container {
+			max-width: 600px;
+			text-align: center;
+			color: white;
+			width: 100%;
+		}
 	}
 </style>

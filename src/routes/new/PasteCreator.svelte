@@ -130,87 +130,78 @@
 </script>
 
 <form style="display: contents" on:submit|preventDefault={onShareHandler}>
-	<div class="container">
-		<div class="textarea">
-			<CarbonTextarea
-				placeholder="May your paste be long; May your copy be swift..."
-				bind:value={plainText}
-				style="width: 100%; height: 25rem;"
-				required
-			/>
-		</div>
-		<div class="options">
-			<CarbonInput
-				id="sender-name-field"
-				bind:value={senderName}
-				label="Sender Name (optional)"
-				placeholder="Darth Vader"
-			/>
-			<CarbonInput
-				id="password-field"
-				bind:value={password}
-				label="Password (optional)"
-				placeholder="••••••••"
-				secureText
-			/>
-			<CarbonToggle id="one-view-toggle" label="One View" bind:checked={oneView} />
-			<CarbonSelect
-				id="lifespan-select"
-				label="Lifespan"
-				bind:selected={lifespan}
-				options={[
-					{
-						label: '1 Hour',
-						value: '3600'
-					},
-					{
-						label: '6 Hours',
-						value: '21600'
-					},
-					{
-						label: '1 Day',
-						value: '86400'
-					},
-					{
-						label: '3 Days',
-						value: '259200'
-					},
-					{
-						label: '1 Week',
-						value: '604800'
-					}
-				]}
-			/>
-		</div>
-		<div class="call-to-action">
-			<CarbonButton style="margin-top: 3rem;" loading={shareLoading}>Share</CarbonButton>
-		</div>
+	<div class="textarea">
+		<CarbonTextarea
+			placeholder="May your paste be long; May your copy be swift..."
+			bind:value={plainText}
+			style="width: 100%; height: 25rem;"
+			required
+		/>
+	</div>
+	<div class="options">
+		<CarbonInput
+			id="sender-name-field"
+			bind:value={senderName}
+			label="Sender Name (optional)"
+			placeholder="Darth Vader"
+		/>
+		<CarbonInput
+			id="password-field"
+			bind:value={password}
+			label="Password (optional)"
+			placeholder="••••••••"
+			secureText
+		/>
+		<CarbonToggle id="one-view-toggle" label="One View" bind:checked={oneView} />
+		<CarbonSelect
+			id="lifespan-select"
+			label="Lifespan"
+			bind:selected={lifespan}
+			options={[
+				{
+					label: '1 Hour',
+					value: '3600'
+				},
+				{
+					label: '6 Hours',
+					value: '21600'
+				},
+				{
+					label: '1 Day',
+					value: '86400'
+				},
+				{
+					label: '3 Days',
+					value: '259200'
+				},
+				{
+					label: '1 Week',
+					value: '604800'
+				}
+			]}
+		/>
+	</div>
+	<div class="call-to-action">
+		<CarbonButton style="margin-top: 3rem;" loading={shareLoading}>Share</CarbonButton>
 	</div>
 </form>
 
 <style lang="scss">
-	.container {
-		max-width: 600px;
-		text-align: center;
-		color: white;
+	.options {
+		margin-top: 1.5rem;
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+
+		@media only screen and (max-width: 768px) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+
+	.call-to-action {
 		width: 100%;
-
-		.options {
-			margin-top: 1.5rem;
-			display: flex;
-			justify-content: space-between;
-			gap: 1rem;
-
-			@media only screen and (max-width: 768px) {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-		}
-
-		.call-to-action {
-			width: 100%;
-			display: flex;
-			justify-content: center;
-		}
+		display: flex;
+		justify-content: center;
 	}
 </style>
