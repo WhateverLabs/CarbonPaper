@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { PUBLIC_API_URL } from '$env/static/public';
 	import CarbonButton from '$lib/components/CarbonButton.svelte';
 	import CarbonInput from '$lib/components/CarbonInput.svelte';
 	import CarbonSelect from '$lib/components/CarbonSelect.svelte';
 	import CarbonTextarea from '$lib/components/CarbonTextarea.svelte';
 	import CarbonToggle from '$lib/components/CarbonToggle.svelte';
+	import type { PasteRequestBody } from '$lib/types/pasteCreation';
 	import { uint8ArrayToB64String } from '$lib/utils/encoding';
 
 	import _sodium from 'libsodium-wrappers-sumo';
@@ -13,6 +15,8 @@
 	let password = '';
 	let oneView = false;
 	let lifespan = '604800';
+
+	let shareLoading = false;
 
 	const generatePasteKey = () => {
 		const key = _sodium.randombytes_buf(_sodium.crypto_aead_chacha20poly1305_KEYBYTES);
@@ -37,15 +41,51 @@
 
 	const te = new TextEncoder();
 
-	const onShareHandler = () => {
+	const onShareHandler = async () => {
+		shareLoading = true;
+
 		const key = generatePasteKey();
 
 		const plainTextArray = te.encode(plainText);
 
-		const payload = encryptPayload(key, plainTextArray);
+		const senderNamePlaintext = senderName || 'Anonymous';
+		const senderNameArray = te.encode(senderNamePlaintext);
+		const senderNameEncrypted = encryptPayload(key, senderNameArray);
 
-		console.log(uint8ArrayToB64String(payload.header));
-		console.log(uint8ArrayToB64String(payload.ciphertext));
+		const bodyEncrypted = encryptPayload(key, plainTextArray);
+
+		let res: Response;
+
+		try {
+			res = await fetch(`${PUBLIC_API_URL}/new`, {
+				method: 'post',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify({
+					senderNameHeader: uint8ArrayToB64String(senderNameEncrypted.header),
+					senderNameCiphertext: uint8ArrayToB64String(senderNameEncrypted.ciphertext),
+
+					bodyHeader: uint8ArrayToB64String(bodyEncrypted.header),
+					bodyCiphertext: uint8ArrayToB64String(bodyEncrypted.ciphertext),
+
+					expiresInSeconds: Number(lifespan)
+				} as PasteRequestBody)
+			});
+		} catch (e) {
+			console.error(e);
+			return;
+		} finally {
+			shareLoading = false;
+		}
+
+		const data: {
+			success: boolean;
+			message: string;
+			data: string;
+		} = await res.json();
+
+		console.log(data);
 	};
 </script>
 
@@ -103,7 +143,9 @@
 					]}
 				/>
 			</div>
-			<CarbonButton style="margin-top: 3rem;">Share</CarbonButton>
+			<div class="call-to-action">
+				<CarbonButton style="margin-top: 3rem;" loading={shareLoading}>Share</CarbonButton>
+			</div>
 		</div>
 	</form>
 </div>
@@ -133,6 +175,12 @@
 					flex-direction: column;
 					align-items: flex-start;
 				}
+			}
+
+			.call-to-action {
+				width: 100%;
+				display: flex;
+				justify-content: center;
 			}
 		}
 	}

@@ -1,9 +1,17 @@
 <script lang="ts">
+	import LoaderIcon from '$lib/icons/LoaderIcon.svelte';
+
 	export let click: () => void = () => {};
 	export let style = '';
+	export let loading = false;
 </script>
 
-<button {style} class="button" on:click type="submit"><slot /></button>
+<button {style} class="button" on:click type="submit" disabled={loading}>
+	{#if loading}
+		<LoaderIcon />
+	{/if}
+	<slot />
+</button>
 
 <style lang="scss">
 	.button {
@@ -12,7 +20,11 @@
 		border-radius: 10px;
 		border: none;
 		padding: 0.5rem 1rem;
-		font-size: 1.1rem;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
 
 		&:hover {
 			cursor: pointer;
@@ -21,6 +33,22 @@
 
 		&:active {
 			background-color: #531790;
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+
+			color: #9b9b9b;
+
+			background-color: #531790;
+
+			&:hover {
+				background-color: #531790;
+			}
+
+			&:active {
+				background-color: #531790;
+			}
 		}
 	}
 </style>
