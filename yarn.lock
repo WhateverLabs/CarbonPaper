@@ -1642,6 +1642,11 @@ svelte-check@^3.4.3:
     svelte-preprocess "^5.1.0"
     typescript "^5.0.3"
 
+svelte-copy@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/svelte-copy/-/svelte-copy-1.4.1.tgz#4d5c2245dbb87476624499b644cfe304c4f1599b"
+  integrity sha512-ixNNlTfIQWYnQzE0pdMYVCS/2jzMhXm41jmtSvk8EK2Dh+B5sDFEz2xYYo4fVtwtK0dLW5M5ZH/Rs5Jah0r6dw==
+
 "svelte-eslint-parser@>=0.33.0 <1.0.0":
   version "0.33.1"
   resolved "https://registry.yarnpkg.com/svelte-eslint-parser/-/svelte-eslint-parser-0.33.1.tgz#c64dbed2fad099577429b3c39377f6b8d36e5d97"

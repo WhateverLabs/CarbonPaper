@@ -10,5 +10,7 @@
 
 <form on:submit|preventDefault={onSubmit}>
 	<CarbonInput id="password-input" label="Password" bind:value={password} secureText={true} />
-	<CarbonButton>Decrypt</CarbonButton>
+	<div style="display: flex; justify-content: center; width: 100%; margin-top: 1rem;">
+		<CarbonButton>Decrypt</CarbonButton>
+	</div>
 </form>

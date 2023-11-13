@@ -33,6 +33,7 @@
 	"dependencies": {
 		"libsodium-wrappers-sumo": "^0.7.13",
 		"qrcode": "^1.5.3",
-		"sass": "^1.69.5"
+		"sass": "^1.69.5",
+		"svelte-copy": "^1.4.1"
 	}
 }

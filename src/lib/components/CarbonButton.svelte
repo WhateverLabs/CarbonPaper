@@ -1,7 +1,6 @@
 <script lang="ts">
 	import LoaderIcon from '$lib/icons/LoaderIcon.svelte';
 
-	export let click: () => void = () => {};
 	export let style = '';
 	export let loading = false;
 </script>
