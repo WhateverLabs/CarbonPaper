@@ -70,6 +70,11 @@
 		} as PasteRequestBody;
 
 		if (password.length > 0) {
+			if (password.length < _sodium.crypto_pwhash_PASSWD_MIN) {
+				alert('Password too short');
+				return;
+			}
+
 			const pwHash = preparePassword(password);
 			const salt = pwHash.salt;
 			const keyEncryptionKey = pwHash.key;

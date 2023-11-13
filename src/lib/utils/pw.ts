@@ -11,7 +11,7 @@ export const preparePassword = (password: string, _salt?: string) => {
 
 	// derive a key from the password
 	const key = _sodium.crypto_pwhash(
-		_sodium.crypto_pwhash_SALTBYTES,
+		_sodium.crypto_aead_chacha20poly1305_KEYBYTES,
 		password,
 		salt,
 		_sodium.crypto_pwhash_OPSLIMIT_INTERACTIVE,

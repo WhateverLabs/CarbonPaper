@@ -138,6 +138,8 @@
 
 		senderName = td.decode(decryptedSenderName);
 		body = td.decode(decryptedBody);
+
+		requestPassword = false;
 	};
 
 	const decryptCiphertext = (key: Uint8Array, headerB64: string, ciphertextB64: string) => {
