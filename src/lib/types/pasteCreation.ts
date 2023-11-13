@@ -7,6 +7,7 @@ export interface PasteRequestBody {
 
 	passwordHash?: string;
 	passwordHashSalt?: string;
+	encryptedKeyHeader?: string;
 
 	expiresInSeconds: number;
 }
