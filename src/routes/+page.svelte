@@ -1,4 +1,5 @@
 <script>
+	import CarbonButton from '$lib/components/CarbonButton.svelte';
 	import ColourfulCarbonContainer from '$lib/components/ColourfulCarbonContainer.svelte';
 </script>
 
@@ -21,6 +22,7 @@
 		<div class="simplicity">
 			<h1>Simplicity is Key</h1>
 			<p>Just paste, copy the link, and share it with whoever.</p>
+			<CarbonButton>Start</CarbonButton>
 		</div>
 	</div>
 </div>
@@ -43,6 +45,9 @@
 
 			.simplicity {
 				margin-top: 5rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 			}
 		}
 	}
