@@ -75,7 +75,7 @@
 	}
 
 	// if the checkbox is focused, focus the slider
-	input:focus:checked + .slider {
+	input:focus + .slider {
 		box-shadow: 0 0 20px #701ab6;
 	}
 </style>
