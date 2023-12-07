@@ -66,9 +66,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: flex-end;
-		margin-bottom: 1rem;
+		margin: 1rem 0;
 
 		.disclaimer {
+			margin-top: 0;
 			font-size: 0.8rem;
 			color: gray;
 			text-align: right;
