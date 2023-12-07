@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1873 1063" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;">
+    <g id="shape-dcd3e2a8-57cf-8015-8003-8bdc6b5f43d0" transform="matrix(1,0,0,1,0,-577)">
+        <g id="shape-d0e87f9b-bf69-8091-8002-92d85cf0f7de">
+            <g id="fills-d0e87f9b-bf69-8091-8002-92d85cf0f7de">
+                <ellipse cx="934.5" cy="450.5" rx="620.5" ry="444.5" style="fill:none;"/>
+            </g>
+            <g id="strokes-d0e87f9b-bf69-8091-8002-92d85cf0f7de">
+                <g>
+                    <ellipse cx="934.5" cy="450.5" rx="620.5" ry="444.5" style="fill:none;stroke:rgb(158,158,158);stroke-opacity:0.3;stroke-width:12px;"/>
+                </g>
+            </g>
+        </g>
+        <g id="shape-d0e87f9b-bf69-8091-8002-92d88911eff9">
+            <g id="fills-d0e87f9b-bf69-8091-8002-92d88911eff9">
+                <ellipse cx="935.5" cy="584" rx="682.5" ry="489" style="fill:none;"/>
+            </g>
+            <g id="strokes-d0e87f9b-bf69-8091-8002-92d88911eff9">
+                <g>
+                    <ellipse cx="935.5" cy="584" rx="682.5" ry="489" style="fill:none;stroke:rgb(158,158,158);stroke-opacity:0.3;stroke-width:12px;"/>
+                </g>
+            </g>
+        </g>
+        <g id="shape-d0e87f9b-bf69-8091-8002-92d894adb785">
+            <g id="fills-d0e87f9b-bf69-8091-8002-92d894adb785">
+                <ellipse cx="934.5" cy="724" rx="745.5" ry="534" style="fill:none;"/>
+            </g>
+            <g id="strokes-d0e87f9b-bf69-8091-8002-92d894adb785">
+                <g>
+                    <ellipse cx="934.5" cy="724" rx="745.5" ry="534" style="fill:none;stroke:rgb(158,158,158);stroke-opacity:0.3;stroke-width:12px;"/>
+                </g>
+            </g>
+        </g>
+        <g id="shape-d0e87f9b-bf69-8091-8002-92d8b1a92466">
+            <g id="fills-d0e87f9b-bf69-8091-8002-92d8b1a92466">
+                <ellipse cx="935.5" cy="894" rx="833.5" ry="597" style="fill:none;"/>
+            </g>
+            <g id="strokes-d0e87f9b-bf69-8091-8002-92d8b1a92466">
+                <g>
+                    <ellipse cx="935.5" cy="894" rx="833.5" ry="597" style="fill:none;stroke:rgb(158,158,158);stroke-opacity:0.3;stroke-width:12px;"/>
+                </g>
+            </g>
+        </g>
+        <g id="shape-d0e87f9b-bf69-8091-8002-92d8c05952c7">
+            <g id="fills-d0e87f9b-bf69-8091-8002-92d8c05952c7">
+                <ellipse cx="936.5" cy="926" rx="930.5" ry="755" style="fill:none;"/>
+            </g>
+            <g id="strokes-d0e87f9b-bf69-8091-8002-92d8c05952c7">
+                <g>
+                    <ellipse cx="936.5" cy="926" rx="930.5" ry="755" style="fill:none;stroke:rgb(158,158,158);stroke-opacity:0.3;stroke-width:12px;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

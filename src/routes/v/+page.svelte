@@ -233,6 +233,10 @@
 		box-sizing: border-box;
 
 		background: black;
+		background-image: url('/receiver_circles.svg');
+		background-repeat: no-repeat;
+		background-position: top center;
+		background-size: cover;
 
 		.container {
 			max-width: 600px;
