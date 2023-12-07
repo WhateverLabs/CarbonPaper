@@ -38,7 +38,10 @@
 {:else}
 	<CarbonTextarea placeholder="" disabled value={body} style="width: 100%; height: 25rem" />
 {/if}
-<div style="display: flex; justify-content: flex-end; margin: 1rem 0;">
+<div class="view-options">
+	{#if enableFormatting}
+		<p class="disclaimer">Markdown is being rendered in a secure sandbox.</p>
+	{/if}
 	<CarbonToggle bind:checked={enableFormatting} label="Enable Formatting" />
 </div>
 
@@ -57,5 +60,18 @@
 		height: 25rem;
 
 		width: 100%;
+	}
+
+	.view-options {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		margin-bottom: 1rem;
+
+		.disclaimer {
+			font-size: 0.8rem;
+			color: gray;
+			text-align: right;
+		}
 	}
 </style>
