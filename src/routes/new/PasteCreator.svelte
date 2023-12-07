@@ -125,9 +125,6 @@
 		}
 
 		pasteId = data.data;
-
-		console.log(pasteId);
-		console.log(pasteFragment);
 	};
 </script>
 
