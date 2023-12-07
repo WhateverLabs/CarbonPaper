@@ -49,10 +49,6 @@
 				background-color: #4a4a53;
 				cursor: pointer;
 			}
-
-			&:focus {
-				outline: none;
-			}
 		}
 
 		.label {

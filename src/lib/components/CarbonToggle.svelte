@@ -73,4 +73,9 @@
 	input:checked + .slider:before {
 		transform: translateX(26px);
 	}
+
+	// if the checkbox is focused, focus the slider
+	input:focus:checked + .slider {
+		box-shadow: 0 0 20px #701ab6;
+	}
 </style>
