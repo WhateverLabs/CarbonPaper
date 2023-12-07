@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@ts-stack/markdown": "^1.5.0",
 		"libsodium-wrappers-sumo": "^0.7.13",
 		"qrcode": "^1.5.3",
 		"sass": "^1.69.5",
