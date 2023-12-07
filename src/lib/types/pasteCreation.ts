@@ -12,4 +12,6 @@ export interface PasteRequestBody {
 	oneView: boolean;
 
 	expiresInSeconds: number;
+
+	expiresAt: string;
 }

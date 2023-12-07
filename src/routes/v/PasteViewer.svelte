@@ -3,9 +3,11 @@
 	import CarbonTextarea from '$lib/components/CarbonTextarea.svelte';
 	import CarbonToggle from '$lib/components/CarbonToggle.svelte';
 	import iframeMarkdownCSS from '$lib/styles/iframeMarkdownCSS';
+	import { timeUntil } from '$lib/utils/time';
 
 	export let senderName: string;
 	export let body: string;
+	export let expiresAt: string;
 
 	import { Marked } from '@ts-stack/markdown';
 	import { onMount } from 'svelte';
@@ -45,8 +47,15 @@
 	<CarbonToggle bind:checked={enableFormatting} label="Enable Formatting" />
 </div>
 
-<div style="display: flex; justify-content: center; width: 100%; margin-top: 1rem;">
+<div class="paste-footer">
 	<CarbonCopyButton text={body} />
+	<p class="expiration">
+		{#if expiresAt}
+			This paste will be deleted in <span class="destruction-timer"
+				>{timeUntil(new Date(expiresAt))}</span
+			>.
+		{/if}
+	</p>
 </div>
 
 <style lang="scss">
@@ -73,6 +82,24 @@
 			font-size: 0.8rem;
 			color: gray;
 			text-align: right;
+		}
+	}
+
+	.paste-footer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-top: 1rem;
+
+		.expiration {
+			font-size: 0.8rem;
+			color: gray;
+			text-align: right;
+
+			.destruction-timer {
+				color: red;
+			}
 		}
 	}
 </style>

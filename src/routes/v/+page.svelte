@@ -20,6 +20,7 @@
 
 	let senderName = '';
 	let body = '';
+	let expiresAt = '';
 
 	let loading = true;
 
@@ -123,6 +124,8 @@
 			return;
 		}
 
+		expiresAt = data.expiresAt;
+
 		let decryptionKey: Uint8Array;
 
 		// fetch decryption key from fragment
@@ -212,7 +215,7 @@
 			{#if requestPassword}
 				<PasswordRequestView bind:password onSubmit={loadPaste} />
 			{:else}
-				<PasteViewer {senderName} {body} />
+				<PasteViewer {senderName} {body} {expiresAt} />
 			{/if}
 		{/if}
 	</div>
