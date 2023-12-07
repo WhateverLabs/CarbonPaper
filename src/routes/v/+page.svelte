@@ -9,8 +9,7 @@
 	import PasswordRequestView from './PasswordRequestView.svelte';
 	import LoaderIcon from '$lib/icons/LoaderIcon.svelte';
 
-	const pasteId = $page.params.id;
-
+	const pasteId = $page.url.searchParams.get('id');
 	let password = '';
 	let requestPassword = false;
 
