@@ -8,6 +8,7 @@
 	export let senderName: string;
 	export let body: string;
 	export let expiresAt: string;
+	export let oneView: boolean;
 
 	import { Marked } from '@ts-stack/markdown';
 	import { onMount } from 'svelte';
@@ -50,8 +51,10 @@
 <div class="paste-footer">
 	<CarbonCopyButton text={body} />
 	<p class="expiration">
-		{#if expiresAt}
-			This paste will be deleted in <span class="destruction-timer"
+		{#if oneView}
+			This paste was just deleted and <span class="destruction-timer">cannot be viewed again</span>.
+		{:else if expiresAt}
+			This paste will expire in <span class="destruction-timer"
 				>{timeUntil(new Date(expiresAt))}</span
 			>.
 		{/if}

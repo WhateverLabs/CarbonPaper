@@ -21,6 +21,7 @@
 	let senderName = '';
 	let body = '';
 	let expiresAt = '';
+	let oneView = false;
 
 	let loading = true;
 
@@ -125,6 +126,7 @@
 		}
 
 		expiresAt = data.expiresAt;
+		oneView = data.oneView;
 
 		let decryptionKey: Uint8Array;
 
@@ -215,7 +217,7 @@
 			{#if requestPassword}
 				<PasswordRequestView bind:password onSubmit={loadPaste} />
 			{:else}
-				<PasteViewer {senderName} {body} {expiresAt} />
+				<PasteViewer {senderName} {body} {expiresAt} {oneView} />
 			{/if}
 		{/if}
 	</div>
