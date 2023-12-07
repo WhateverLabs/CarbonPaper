@@ -13,7 +13,7 @@
 	let showSecureText = false;
 </script>
 
-<div class="container">
+<div class="container" {style}>
 	<div class="group" class:secureText>
 		{#if (secureText && showSecureText) || !secureText}
 			<input

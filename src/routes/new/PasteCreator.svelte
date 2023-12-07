@@ -132,14 +132,12 @@
 </script>
 
 <form style="display: contents" on:submit|preventDefault={onShareHandler}>
-	<div class="textarea">
-		<CarbonTextarea
-			placeholder="May your paste be long; May your copy be swift..."
-			bind:value={plainText}
-			style="width: 100%; height: 25rem;"
-			required
-		/>
-	</div>
+	<CarbonTextarea
+		placeholder="May your paste be long; May your copy be swift..."
+		bind:value={plainText}
+		style="width: 100%; height: 25rem;"
+		required
+	/>
 	<div class="options">
 		<CarbonInput
 			id="sender-name-field"
@@ -197,6 +195,7 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 1rem;
+		width: 100%;
 
 		@media only screen and (max-width: 768px) {
 			flex-direction: column;
