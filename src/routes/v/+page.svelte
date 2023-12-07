@@ -8,6 +8,7 @@
 	import { onMount } from 'svelte';
 	import PasswordRequestView from './PasswordRequestView.svelte';
 	import LoaderIcon from '$lib/icons/LoaderIcon.svelte';
+	import Alert from '$lib/components/Alert.svelte';
 
 	const pasteId = $page.url.searchParams.get('id');
 	let password = '';
@@ -21,6 +22,9 @@
 	let body = '';
 
 	let loading = true;
+
+	let showError = false;
+	let errorMessage = '';
 
 	const getPasteMetadata = async () => {
 		let res: Response;
@@ -84,8 +88,8 @@
 		try {
 			metadata = await getPasteMetadata();
 		} catch (err) {
-			console.error(err);
-			alert('Failed to load paste metadata');
+			showError = true;
+			errorMessage = "This paste doesn't exist.";
 			loading = false;
 			return;
 		}
@@ -114,7 +118,7 @@
 			data = await getPasteData(kekHash);
 		} catch (err) {
 			console.error(err);
-			alert('Failed to load paste data');
+			errorMessage = "This paste doesn't exist.";
 			loading = false;
 			return;
 		}
@@ -127,7 +131,16 @@
 		if (kek) {
 			const ciphertext = fragment.replace('pw--', '');
 
-			const decryptedKeyUint8Array = decryptCiphertext(kek, data.encryptedKeyHeader!, ciphertext);
+			let decryptedKeyUint8Array: Uint8Array;
+
+			try {
+				decryptedKeyUint8Array = decryptCiphertext(kek, data.encryptedKeyHeader!, ciphertext);
+			} catch {
+				showError = true;
+				errorMessage = 'Failed to decrypt paste.';
+				loading = false;
+				return;
+			}
 
 			decryptionKey = decryptedKeyUint8Array;
 		} else {
@@ -135,13 +148,31 @@
 		}
 
 		// decrypt sender name and body
-		const decryptedSenderName = decryptCiphertext(
-			decryptionKey,
-			data.senderNameHeader!,
-			data.senderNameCiphertext!
-		);
+		let decryptedSenderName: Uint8Array;
 
-		const decryptedBody = decryptCiphertext(decryptionKey, data.bodyHeader!, data.bodyCiphertext!);
+		try {
+			decryptedSenderName = decryptCiphertext(
+				decryptionKey,
+				data.senderNameHeader!,
+				data.senderNameCiphertext!
+			);
+		} catch {
+			showError = true;
+			errorMessage = 'Failed to decrypt paste.';
+			loading = false;
+			return;
+		}
+
+		let decryptedBody: Uint8Array;
+
+		try {
+			decryptedBody = decryptCiphertext(decryptionKey, data.bodyHeader!, data.bodyCiphertext!);
+		} catch {
+			showError = true;
+			errorMessage = 'Failed to decrypt paste.';
+			loading = false;
+			return;
+		}
 
 		senderName = td.decode(decryptedSenderName);
 		body = td.decode(decryptedBody);
@@ -174,6 +205,8 @@
 	<div class="container">
 		{#if loading}
 			<LoaderIcon width={30} height={30} />
+		{:else if showError && errorMessage}
+			<Alert type="error" title="Failed to load paste" message={errorMessage} />
 		{:else}
 			<!-- svelte-ignore -->
 			{#if requestPassword}
