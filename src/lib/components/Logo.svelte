@@ -1,7 +1,9 @@
-<div class="container">
-	<img src="/carbon-paper.webp" alt="Carbon Paper Logo" class="logo" />
-	<p>Carbon Paper</p>
-</div>
+<a href="/" style="text-decoration: none;">
+	<div class="container">
+		<img src="/carbon-paper.webp" alt="Carbon Paper Logo" class="logo" />
+		<p>Carbon Paper</p>
+	</div>
+</a>
 
 <style lang="scss">
 	.container {

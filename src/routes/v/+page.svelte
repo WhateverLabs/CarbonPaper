@@ -9,6 +9,7 @@
 	import PasswordRequestView from './PasswordRequestView.svelte';
 	import LoaderIcon from '$lib/icons/LoaderIcon.svelte';
 	import Alert from '$lib/components/Alert.svelte';
+	import Logo from '$lib/components/Logo.svelte';
 
 	const pasteId = $page.url.searchParams.get('id');
 	let password = '';
@@ -208,6 +209,9 @@
 
 <div class="wrapper">
 	<div class="container">
+		<div class="logo-container">
+			<Logo />
+		</div>
 		{#if loading}
 			<LoaderIcon width={30} height={30} />
 		{:else if showError && errorMessage}
@@ -243,6 +247,10 @@
 			text-align: center;
 			color: white;
 			width: 100%;
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 	}
 </style>

@@ -79,6 +79,7 @@
 		flex-direction: column;
 		align-items: flex-end;
 		margin: 1rem 0;
+		width: 100%;
 
 		.disclaimer {
 			margin-top: 0;
