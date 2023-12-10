@@ -54,7 +54,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 100%;
+		min-height: 100%;
 		padding: 1rem;
 		box-sizing: border-box;
 		background: linear-gradient(0deg, black, #310a52);
