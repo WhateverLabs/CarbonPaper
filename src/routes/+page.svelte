@@ -28,6 +28,9 @@
 				<CarbonButton>Start</CarbonButton>
 			</a>
 		</div>
+		<p class="credit">
+			Engineered by <a href="https://httpjames.space" target="_blank">http.james</a>
+		</p>
 	</div>
 </div>
 
@@ -58,6 +61,14 @@
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+
+				h1 {
+					margin-bottom: 0;
+				}
+			}
+
+			.credit {
+				font-size: 0.75rem;
 			}
 		}
 	}
