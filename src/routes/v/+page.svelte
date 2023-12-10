@@ -243,15 +243,29 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 100%;
+		min-height: 100%;
 		padding: 1rem;
 		box-sizing: border-box;
 
 		background: black;
-		background-image: url('/receiver_circles.svg');
-		background-repeat: no-repeat;
-		background-position: top center;
-		background-size: cover;
+
+		position: relative;
+		z-index: 1;
+
+		&::after {
+			background-image: url('/receiver_circles.svg');
+			background-repeat: no-repeat;
+			background-position: top center;
+			background-size: cover;
+			content: '';
+			opacity: 0.3;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+		}
 
 		.container {
 			max-width: 600px;
