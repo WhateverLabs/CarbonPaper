@@ -112,6 +112,8 @@
 
 					@media only screen and (max-width: 768px) {
 						background-color: gray;
+						width: 2.5rem;
+						font-size: 1rem;
 					}
 				}
 			}
@@ -126,6 +128,11 @@
 				border-bottom-left-radius: inherit;
 				border-top-right-radius: 0;
 				border-bottom-right-radius: 0;
+
+				@media only screen and (max-width: 768px) {
+					height: 2.5rem;
+					padding: 1rem;
+				}
 
 				&.clear {
 					border-top-right-radius: inherit;

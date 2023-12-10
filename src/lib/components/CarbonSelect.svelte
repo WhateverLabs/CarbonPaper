@@ -37,6 +37,8 @@
 			box-sizing: border-box;
 			border-radius: 10px;
 			align-items: center;
+
+			height: 2.5rem;
 		}
 
 		.group {
