@@ -4,6 +4,16 @@
 	import Logo from '$lib/components/Logo.svelte';
 </script>
 
+<svelte:head>
+	<meta name="title" content="Carbon Paper - End-to-end encrypted pastes" />
+	<meta
+		name="description"
+		content="Carbon Paper encrypts your pastes with XChaCha20-Poly1305, a battle-tested algorithm that keeps your secrets safe. All of this is done on the client-side, ensuring that no one but you and the receivers of the share link can view the paste's contents."
+	/>
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="og:image" content="/carbon-paper-home.webp" />
+</svelte:head>
+
 <div class="wrapper">
 	<div class="container">
 		<div class="hero">

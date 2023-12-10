@@ -209,6 +209,14 @@
 	});
 </script>
 
+<svelte:head>
+	<meta name="title" content="Carbon Paper - Someone shared a paste with you" />
+	<meta
+		name="description"
+		content="Someone shared an end-to-end encrypted paste with you. Click the link to decrypt and view its contents."
+	/>
+</svelte:head>
+
 <div class="wrapper">
 	<div class="container">
 		<div class="logo-container">
