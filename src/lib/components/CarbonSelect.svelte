@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CarbonInputLabel from './CarbonInputLabel.svelte';
+
 	export let options: Array<{ value: string; label: string }>;
 	export let selected: string;
 	export let style: string = '';
@@ -14,7 +16,7 @@
 			{/each}
 		</select>
 	</div>
-	<label class="label" for={id}>{label}</label>
+	<CarbonInputLabel forId={id} {label} />
 </div>
 
 <style lang="scss">
@@ -25,6 +27,17 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+
+		@media only screen and (max-width: 768px) {
+			width: 100%;
+			background-color: #35353d;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			padding: 0.5rem 1rem;
+			box-sizing: border-box;
+			border-radius: 10px;
+			align-items: center;
+		}
 
 		.group {
 			display: contents;

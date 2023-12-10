@@ -1,6 +1,7 @@
 <script lang="ts">
 	import EyeIcon from '$lib/icons/EyeIcon.svelte';
 	import EyeSlashIcon from '$lib/icons/EyeSlashIcon.svelte';
+	import CarbonInputLabel from './CarbonInputLabel.svelte';
 
 	export let value: string;
 	export let placeholder: string = '';
@@ -44,7 +45,7 @@
 			</button>
 		{/if}
 	</div>
-	<label class="label" for={id}>{label}</label>
+	<CarbonInputLabel forId={id} {label} />
 </div>
 
 <style lang="scss">
@@ -55,6 +56,17 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+
+		@media only screen and (max-width: 768px) {
+			width: 100%;
+			background-color: #35353d;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			padding: 0.5rem 1rem;
+			box-sizing: border-box;
+			border-radius: 10px;
+			align-items: center;
+		}
 
 		.group {
 			display: contents;
@@ -89,6 +101,10 @@
 					&:active {
 						background-color: #27272d;
 					}
+
+					@media only screen and (max-width: 768px) {
+						background-color: gray;
+					}
 				}
 			}
 
@@ -102,6 +118,10 @@
 				border-bottom-left-radius: inherit;
 				border-top-right-radius: 0;
 				border-bottom-right-radius: 0;
+
+				@media only screen and (max-width: 768px) {
+					background-color: gray;
+				}
 
 				&.clear {
 					border-top-right-radius: inherit;
@@ -120,11 +140,6 @@
 					outline: none;
 				}
 			}
-		}
-
-		.label {
-			margin-top: 0.5rem;
-			font-size: 0.7rem;
 		}
 	}
 </style>

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CarbonInputLabel from './CarbonInputLabel.svelte';
+
 	export let checked = false;
 	export let id: string = '';
 	export let label: string;
@@ -9,7 +11,8 @@
 		<input type="checkbox" bind:checked {id} />
 		<span class="slider" />
 	</label>
-	<label class="label" for={id}>{label}</label>
+
+	<CarbonInputLabel forId={id} {label} />
 </div>
 
 <style lang="scss">
@@ -18,11 +21,27 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+
+		@media only screen and (max-width: 768px) {
+			width: 100%;
+			background-color: #35353d;
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			padding: 0.5rem 1rem;
+			box-sizing: border-box;
+			border-radius: 10px;
+			align-items: center;
+		}
 	}
 
 	.label {
 		margin-top: 0.5rem;
 		font-size: 0.7rem;
+
+		@media only screen and (max-width: 768px) {
+			margin-top: 0;
+			font-size: 1rem;
+		}
 	}
 
 	.switch {
@@ -48,6 +67,10 @@
 		background-color: #35353d;
 		transition: 0.4s;
 		border-radius: 20px;
+
+		@media only screen and (max-width: 768px) {
+			background-color: gray;
+		}
 
 		&.slider:before {
 			position: absolute;
