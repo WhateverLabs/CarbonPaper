@@ -83,7 +83,7 @@
 
 			requestBody.passwordHashSalt = _sodium.to_base64(salt);
 			const kekHash = _sodium.crypto_generichash(
-				_sodium.crypto_generichash_KEYBYTES,
+				_sodium.crypto_generichash_BYTES,
 				keyEncryptionKey
 			);
 			requestBody.kekHash = _sodium.to_base64(kekHash);

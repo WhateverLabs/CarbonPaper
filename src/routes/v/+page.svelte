@@ -111,9 +111,9 @@
 		if (metadata.passwordHashSalt.length > 0) {
 			const pw = preparePassword(password, metadata?.passwordHashSalt);
 
-			// hash the password
+			// hash the kek
 			kekHash = _sodium.to_base64(
-				_sodium.crypto_generichash(_sodium.crypto_generichash_KEYBYTES, pw.key)
+				_sodium.crypto_generichash(_sodium.crypto_generichash_BYTES, pw.key)
 			);
 			kek = pw.key;
 		}
