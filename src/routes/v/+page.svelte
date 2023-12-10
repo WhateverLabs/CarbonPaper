@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import PasteViewer from './PasteViewer.svelte';
 	import type { PasteRequestBody } from '$lib/types/pasteCreation';
@@ -11,7 +10,6 @@
 	import Alert from '$lib/components/Alert.svelte';
 	import Logo from '$lib/components/Logo.svelte';
 
-	const pasteId = $page.url.searchParams.get('id');
 	let password = '';
 	let requestPassword = false;
 
@@ -30,10 +28,12 @@
 	let errorMessage = '';
 
 	const getPasteMetadata = async () => {
+		const searchParams = new URLSearchParams(window.location.search);
+
 		let res: Response;
 
 		try {
-			res = await fetch(`${PUBLIC_API_URL}/metadata/${pasteId}`);
+			res = await fetch(`${PUBLIC_API_URL}/metadata/${searchParams.get('id')}`);
 		} catch (err) {
 			throw err;
 		}
@@ -54,7 +54,9 @@
 	};
 
 	const getPasteData = async (kekHash?: string) => {
-		let url = `${PUBLIC_API_URL}/data/${pasteId}`;
+		const searchParams = new URLSearchParams(window.location.search);
+
+		let url = `${PUBLIC_API_URL}/data/${searchParams.get('id')}`;
 
 		if (kekHash) {
 			url += `?passwordHash=${kekHash}`;
