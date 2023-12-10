@@ -62,6 +62,10 @@
 				background-color: #4a4a53;
 				cursor: pointer;
 			}
+
+			&:focus {
+				box-shadow: 0 0 20px #701ab6;
+			}
 		}
 
 		.label {

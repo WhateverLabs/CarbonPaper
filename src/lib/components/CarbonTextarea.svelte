@@ -27,7 +27,7 @@
 		}
 
 		&:focus {
-			outline: none;
+			box-shadow: 0 0 20px #701ab6;
 		}
 	}
 </style>
