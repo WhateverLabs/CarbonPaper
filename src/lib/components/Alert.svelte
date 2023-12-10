@@ -2,9 +2,10 @@
 	export let title: string;
 	export let message: string;
 	export let type: 'success' | 'error';
+	export let style = '';
 </script>
 
-<div class="alert" class:error={type === 'error'}>
+<div class="alert" class:error={type === 'error'} {style}>
 	<h3>{title}</h3>
 	<p>{message}</p>
 </div>

@@ -226,7 +226,12 @@
 		{#if loading}
 			<LoaderIcon width={30} height={30} />
 		{:else if showError && errorMessage}
-			<Alert type="error" title="Failed to load paste" message={errorMessage} />
+			<Alert
+				type="error"
+				title="Failed to load paste"
+				message={errorMessage}
+				style="margin-top: 1rem;"
+			/>
 		{:else}
 			<!-- svelte-ignore -->
 			{#if requestPassword}
