@@ -75,9 +75,17 @@
 			border-bottom-right-radius: 10px;
 			background-color: $backgroundColor;
 
+			@media only screen and (max-width: 768px) {
+				background-color: gray;
+			}
+
 			&.secureText {
 				display: flex !important;
 				background-color: $backgroundColor;
+
+				@media only screen and (max-width: 768px) {
+					background-color: gray;
+				}
 
 				.eye {
 					background-color: inherit;
@@ -118,10 +126,6 @@
 				border-bottom-left-radius: inherit;
 				border-top-right-radius: 0;
 				border-bottom-right-radius: 0;
-
-				@media only screen and (max-width: 768px) {
-					background-color: gray;
-				}
 
 				&.clear {
 					border-top-right-radius: inherit;
