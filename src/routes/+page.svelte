@@ -38,6 +38,7 @@
 			</a>
 		</div>
 		<p class="credit">
+			Designed by <a href="https://github.com/WhateverLabs" target="_blank">Whatever Labs</a> •
 			Engineered by <a href="https://httpjames.space" target="_blank">http.james</a> •
 			<a
 				href="https://github.com/WhateverLabs/CarbonPaper"
