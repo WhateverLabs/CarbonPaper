@@ -7,7 +7,14 @@ COPY . .
 RUN yarn build
 
 # Serve static
-FROM nginx:stable-alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+
+COPY --from=builder /app/build /app/build
+COPY --from=builder --chown=nodeuser:nodeuser /app/node_modules node_modules/
+COPY package.json .
+
+EXPOSE 3000
+
+CMD ["node", "build"]

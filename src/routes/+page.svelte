@@ -11,7 +11,7 @@
 			<h1>Invisible Ink for the Digital Age</h1>
 			<ColourfulCarbonContainer>
 				<p style="margin: 0; text-align: left; font-size: 1.2rem">
-					Carbon Paper encrypts your pastes with XSalsa20-Poly1305, a battle-tested algorithm that
+					Carbon Paper encrypts your pastes with XChaCha20-Poly1305, a battle-tested algorithm that
 					keeps your secrets safe.
 					<br />
 					<br />
