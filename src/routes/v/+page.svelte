@@ -210,11 +210,12 @@
 </script>
 
 <svelte:head>
-	<meta name="title" content="Carbon Paper - Someone shared a paste with you" />
+	<title>Carbon Paper - Someone shared a paste with you</title>
 	<meta
 		name="description"
 		content="Someone shared an end-to-end encrypted paste with you. Click the link to decrypt and view its contents."
 	/>
+	<meta property="og:image" content="/carbon-paper-mobile.webp" />
 </svelte:head>
 
 <div class="wrapper">

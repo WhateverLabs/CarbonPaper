@@ -15,6 +15,15 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Carbon Paper - Create Secure Pastes</title>
+	<meta
+		name="description"
+		content="Carbon Paper encrypts your pastes with XChaCha20-Poly1305, a battle-tested algorithm that keeps your secrets safe. All of this is done on the client-side, ensuring that no one but you and the receivers of the share link can view the paste's contents."
+	/>
+	<meta property="og:image" content="/carbon-paper-mobile.webp" />
+</svelte:head>
+
 <div class="wrapper">
 	<div class="container">
 		<div class="logo-container">
