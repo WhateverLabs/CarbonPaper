@@ -29,7 +29,12 @@
 			</a>
 		</div>
 		<p class="credit">
-			Engineered by <a href="https://httpjames.space" target="_blank">http.james</a>
+			Engineered by <a href="https://httpjames.space" target="_blank">http.james</a> •
+			<a
+				href="https://github.com/WhateverLabs/CarbonPaper"
+				target="_blank"
+				rel="noopener noreferrer">Source Code</a
+			>
 		</p>
 	</div>
 </div>
