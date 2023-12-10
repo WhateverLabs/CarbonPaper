@@ -34,6 +34,7 @@
 			<button
 				class="eye"
 				type="button"
+				aria-label="Toggle password visibility"
 				on:click={() => (showSecureText = !showSecureText)}
 				{disabled}
 			>
