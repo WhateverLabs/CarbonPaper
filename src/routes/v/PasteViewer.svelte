@@ -10,7 +10,7 @@
 	export let expiresAt: string;
 	export let oneView: boolean;
 
-	import { Marked } from '@ts-stack/markdown';
+	import { Marked, escape } from '@ts-stack/markdown';
 	import { onMount } from 'svelte';
 
 	let enableFormatting = true;
@@ -20,7 +20,7 @@
 	onMount(() => {
 		const marked = Marked.setOptions({});
 
-		html = marked.parse(body);
+		html = marked.parse(escape(body));
 	});
 
 	const iframeCSP = "default-src 'self'; style-src 'unsafe-inline';";
