@@ -6,6 +6,8 @@
 	import CarbonTextarea from '$lib/components/CarbonTextarea.svelte';
 	import CarbonToggle from '$lib/components/CarbonToggle.svelte';
 	import type { PasteRequestBody } from '$lib/types/pasteCreation';
+	import { encryptPayload } from '$lib/utils/encrypt';
+	import { generatePasteKey } from '$lib/utils/key';
 	import { preparePassword } from '$lib/utils/pw';
 
 	import _sodium from 'libsodium-wrappers-sumo';
@@ -20,27 +22,6 @@
 	let lifespan = '604800';
 
 	let shareLoading = false;
-
-	const generatePasteKey = () => {
-		const key = _sodium.randombytes_buf(_sodium.crypto_aead_chacha20poly1305_KEYBYTES);
-		return key;
-	};
-
-	const encryptPayload = (key: Uint8Array, data: ArrayBuffer) => {
-		const state = _sodium.crypto_secretstream_xchacha20poly1305_init_push(key);
-
-		const ciphertext = _sodium.crypto_secretstream_xchacha20poly1305_push(
-			state.state,
-			new Uint8Array(data),
-			null,
-			_sodium.crypto_secretstream_xchacha20poly1305_TAG_FINAL
-		);
-
-		return {
-			header: state.header,
-			ciphertext
-		};
-	};
 
 	const te = new TextEncoder();
 
